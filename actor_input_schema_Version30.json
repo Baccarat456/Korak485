@@ -1,0 +1,66 @@
+{
+  "title": "Input schema of the SEC Filing Alert Scraper",
+  "type": "object",
+  "schemaVersion": 1,
+  "properties": {
+    "startUrls": {
+      "title": "Start URLs (EDGAR feeds)",
+      "type": "array",
+      "description": "Atom/RSS feed URLs to poll. Examples: EDGAR company feed `https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193&output=atom` (Apple).",
+      "editor": "requestListSources",
+      "prefill": [
+        {
+          "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000320193&output=atom"
+        }
+      ]
+    },
+    "cikOrTickerList": {
+      "title": "CIKs or tickers (optional)",
+      "type": "array",
+      "description": "Alternative: list of CIKs or tickers. When provided the Actor will build standard company Atom feed URLs for each entry (not exhaustive - used for convenience).",
+      "items": {
+        "type": "string"
+      },
+      "default": []
+    },
+    "filingTypes": {
+      "title": "Filing types to alert (optional)",
+      "type": "array",
+      "description": "If provided, only filings whose type/title match one of these tokens (case-insensitive) will be emitted. Common tokens: 10-K, 10-Q, 8-K, SC 13D, 13F.",
+      "items": {
+        "type": "string"
+      },
+      "default": ["10-K", "10-Q", "8-K"]
+    },
+    "maxRequestsPerCrawl": {
+      "title": "Max requests per crawl",
+      "type": "integer",
+      "description": "Maximum number of HTTP requests the Actor will make.",
+      "default": 100
+    },
+    "maxEntriesPerFeed": {
+      "title": "Max entries per feed",
+      "type": "integer",
+      "description": "Maximum number of entries to process per feed run (newest first).",
+      "default": 50
+    },
+    "includeFullFiling": {
+      "title": "Include full filing text (optional)",
+      "type": "boolean",
+      "description": "If true, attempt to fetch the filing's document link (may be large). Disabled by default.",
+      "default": false
+    },
+    "webhookUrl": {
+      "title": "Webhook URL (optional)",
+      "type": "string",
+      "description": "If set, the Actor will POST a JSON payload for every new filing detected.",
+      "default": ""
+    },
+    "userAgent": {
+      "title": "User-Agent header",
+      "type": "string",
+      "description": "Custom User-Agent for requests (SEC requires a descriptive UA). Example: 'CompanyName contact@company.com'.",
+      "default": "sec-filing-alert-scraper (+https://example.com)"
+    }
+  }
+}

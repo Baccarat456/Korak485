@@ -1,0 +1,29 @@
+{
+  "name": "sec-filing-alert-scraper",
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Polls SEC EDGAR feeds for new filings, deduplicates using KV store, and emits Dataset items and optional webhook notifications.",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "dependencies": {
+    "apify": "^3.4.2",
+    "crawlee": "^3.13.8"
+  },
+  "devDependencies": {
+    "@apify/eslint-config": "^1.0.0",
+    "eslint": "^9.29.0",
+    "eslint-config-prettier": "^10.1.5",
+    "prettier": "^3.5.3"
+  },
+  "scripts": {
+    "start": "node src/main.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "test": "echo 'Error: no tests yet' && exit 1"
+  },
+  "author": "It's not you it's me",
+  "license": "ISC"
+}

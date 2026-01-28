@@ -1,0 +1,78 @@
+{
+  "actorSpecification": 1,
+  "fields": {
+    "feedUrl": {
+      "type": "string",
+      "title": "Feed URL"
+    },
+    "company": {
+      "type": "string",
+      "title": "Company CIK or inferred name"
+    },
+    "filingId": {
+      "type": "string",
+      "title": "Filing unique id"
+    },
+    "filingType": {
+      "type": "string",
+      "title": "Filing type (10-K, 10-Q, 8-K, ...)"
+    },
+    "title": {
+      "type": "string",
+      "title": "Entry title"
+    },
+    "summary": {
+      "type": "string",
+      "title": "Summary / content snippet"
+    },
+    "link": {
+      "type": "string",
+      "title": "Entry link (document/filing page)"
+    },
+    "publishedAt": {
+      "type": "string",
+      "title": "Published at (ISO)"
+    },
+    "fullFilingText": {
+      "type": "string",
+      "title": "Full filing text (if fetched)"
+    },
+    "scrapedAt": {
+      "type": "string",
+      "title": "Scraped at (ISO)"
+    }
+  },
+  "views": {
+    "overview": {
+      "title": "Overview",
+      "transformation": {
+        "fields": ["company", "filingType", "title", "publishedAt", "link"]
+      },
+      "display": {
+        "component": "table",
+        "properties": {
+          "company": {
+            "label": "Company",
+            "format": "text"
+          },
+          "filingType": {
+            "label": "Type",
+            "format": "text"
+          },
+          "title": {
+            "label": "Title",
+            "format": "text"
+          },
+          "publishedAt": {
+            "label": "Published",
+            "format": "text"
+          },
+          "link": {
+            "label": "URL",
+            "format": "link"
+          }
+        }
+      }
+    }
+  }
+}
